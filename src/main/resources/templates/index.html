@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Generar Reporte PDF</title>
+</head>
+<body>
+    <h1>Bienvenido</h1>
+    <p>Clickea el botón para generar un reporte con los actores de la BD.</p>
+    <form th:action="@{/generate-report}" method="get">
+        <button type="submit">Descargar Reporte PDF</button>
+    </form>
+</body>
+</html>

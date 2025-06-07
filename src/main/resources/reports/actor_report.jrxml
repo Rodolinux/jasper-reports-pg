@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="actor_report"
+              pageWidth="595" pageHeight="842"
+              columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="H2_DVDRENTAL"/>
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <queryString>
+        <![CDATA[SELECT
+            actor_id AS actorId,
+            first_name AS firstName,
+            last_name AS lastName,
+            last_update AS lastUpdate
+        FROM
+            actor;]]>
+    </queryString>
+    <field name="actorId" class="java.lang.Integer">
+        <property name="com.jaspersoft.studio.field.name" value="actor_id"/>
+        <property name="com.jaspersoft.studio.field.label" value="actorId"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="actor"/>
+    </field>
+    <field name="firstName" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="first_name"/>
+        <property name="com.jaspersoft.studio.field.label" value="firstName"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="actor"/>
+    </field>
+    <field name="lastName" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="last_name"/>
+        <property name="com.jaspersoft.studio.field.label" value="lastName"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="actor"/>
+    </field>
+    <field name="lastUpdate" class="java.time.LocalDateTime"> <property name="com.jaspersoft.studio.field.name" value="last_update"/>
+        <property name="com.jaspersoft.studio.field.label" value="lastUpdate"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="actor"/>
+    </field>
+    <title>
+        <band height="79" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="79" uuid="8f45a556-91e8-466a-b286-9799298f0907"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="24" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Listado de Actores de DVD Rental]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="30" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="80" height="30" uuid="70a133f9-71c1-404c-a117-6415a77e7a7e"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="80" y="0" width="180" height="30" uuid="b24e6c38-8c59-4505-9005-185d9c727f71"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Nombre]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="260" y="0" width="180" height="30" uuid="c24e6c38-8c59-4505-9005-185d9c727f71"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Apellido]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="440" y="0" width="115" height="30" uuid="d24e6c38-8c59-4505-9005-185d9c727f71"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Última Actualización]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="80" height="20" uuid="e0e7a2b0-8c29-4d64-a6f9-03f473e67c87"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{actorId}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="80" y="0" width="180" height="20" uuid="f1f8b3c1-9d3a-4e75-a700-04f584e78d98"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{firstName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="260" y="0" width="180" height="20" uuid="1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{lastName}]]></textFieldExpression>
+            </textField>
+            <textField pattern="yyyy-MM-dd HH:mm">
+                <reportElement x="440" y="0" width="115" height="20" uuid="2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{lastUpdate}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement x="455" y="0" width="100" height="20" uuid="3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>
