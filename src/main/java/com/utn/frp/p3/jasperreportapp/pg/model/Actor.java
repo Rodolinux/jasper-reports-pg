@@ -1,4 +1,4 @@
-package com.example.jasperreportapp.model;
+package com.utn.frp.p3.jasperreportapp.pg.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;

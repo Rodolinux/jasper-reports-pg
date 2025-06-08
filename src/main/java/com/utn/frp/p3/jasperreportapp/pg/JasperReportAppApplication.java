@@ -1,4 +1,4 @@
-package com.example.jasperreportapp;
+package com.utn.frp.p3.jasperreportapp.pg;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

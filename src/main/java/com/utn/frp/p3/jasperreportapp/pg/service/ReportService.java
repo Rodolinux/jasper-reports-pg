@@ -1,4 +1,4 @@
-package com.example.jasperreportapp.service;
+package com.utn.frp.p3.jasperreportapp.pg.service;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.export.JRPdfExporter;

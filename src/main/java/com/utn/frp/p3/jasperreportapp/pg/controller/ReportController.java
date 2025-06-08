@@ -1,7 +1,5 @@
-package com.example.jasperreportapp.controller;
+package com.utn.frp.p3.jasperreportapp.pg.controller;
 
-import com.example.jasperreportapp.model.Actor;
-import com.example.jasperreportapp.repository.ActorRepository;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.export.SimpleExporterInput;
@@ -16,6 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.utn.frp.p3.jasperreportapp.pg.model.Actor;
+import com.utn.frp.p3.jasperreportapp.pg.repository.ActorRepository;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
