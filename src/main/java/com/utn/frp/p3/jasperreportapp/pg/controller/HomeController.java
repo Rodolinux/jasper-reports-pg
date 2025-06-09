@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping("/") //si llega una petición a / entonces
     public String showIndex() {
-        return "index"; // nombre del archivo sin extensión
+        return "index"; // nombre del archivo html a devolver, sin extensión, que contiene el botón para generar el reporte
     }
 }

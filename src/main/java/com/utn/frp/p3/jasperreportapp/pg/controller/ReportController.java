@@ -25,37 +25,47 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@Controller //podría emplear RestController, pero Controller da más control aunque exige más código para generar el pdf
 public class ReportController {
 
-    private final ActorRepository actorRepository;
+    private final ActorRepository actorRepository; //repositorio JPA, viene de ActorRepository.java
 
     public ReportController(ActorRepository actorRepository) {
-        this.actorRepository = actorRepository;
+        this.actorRepository = actorRepository; //inyectamos el repositorio en el constructor
     }
 
  
 
-    @GetMapping("/generate-report")
+    @GetMapping("/generate-report") //llegamos aquí desde el botón que está dentro de un form, que apunta a esta url
+    //la respuesta de este metodo es una lista de bytes, que es el pdf
     public ResponseEntity<byte[]> generateReport() throws Exception {
-        List<Actor> actors = actorRepository.findAll();
-
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(actors);
-
-        InputStream jasperStream = new ClassPathResource("reports/actor_report.jrxml").getInputStream();
+        List<Actor> actors = actorRepository.findAll(); //actor es una lista de objetos de la clase Actor; actorRepository accede a la db otorgando métodos JPA
+        
+        //se declara el datasource de actors
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(actors); 
+        
+        //cargar el template del reporte
+        InputStream jasperStream = new ClassPathResource("reports/Simple_Blue.jrxml").getInputStream();
+        
+        //compilar el reporte jrxml en un objeto JasperReport. En proyectos grandes, es conveniente precompilar el reporte como .jasper
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperStream);
-
+        
+        //Configurar los parámetros para el informe
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("CreatedBy", "Spring Boot App");
-
+    
+        //llenar el informe, combinando el informe compilado, los parámetros y el datasource
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-
+        
+        //exportar el informe a PDF
         byte[] reportBytes = JasperExportManager.exportReportToPdf(jasperPrint);
-
+        
+        //configuración de la respuesta http
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("inline", "actor_report.pdf");
-
+        
+        //devolver la respuesta
         return ResponseEntity.ok().headers(headers).body(reportBytes);
     }
     
